@@ -3,13 +3,15 @@ version: 0.2
 phases:
   install:
     commands:
-      - echo "No dependencies to install for static files."
+      - echo "Installing dependencies..."
+      - npm install
   build:
     commands:
-      - echo "No build step required for static files."
+      - echo "Running tests..."
+      - npm test
   post_build:
     commands:
-      - echo "Build completed. Preparing to deploy to S3."
+      - echo "Tests completed. Preparing to deploy to S3."
       - aws s3 sync . s3://streaming-platform-frontend-dev --delete
 artifacts:
   files:
