@@ -1,0 +1,19 @@
+version: 0.2
+
+phases:
+  install:
+    commands:
+      - echo "Installing dependencies..."
+      - npm install
+  build:
+    commands:
+      - echo "Running tests..."
+      - npm test
+  post_build:
+    commands:
+      - echo "Tests completed. Preparing to deploy to S3."
+      - aws s3 sync . s3://movie-platform-frontend-dev-224356102322 --delete
+artifacts:
+  files:
+    - '**/*' # Include all files in the repository
+  discard-paths: no
