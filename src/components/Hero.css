@@ -1,0 +1,19 @@
+/* Hero styles */
+.hero {
+  background: linear-gradient(to top, rgba(0,0,0,0.8) 0, rgba(0,0,0,0) 60%, rgba(0,0,0,0.8) 100%);
+  text-align: center;
+  padding: 5rem 1rem;
+}
+
+.hero .headline {
+  font-size: 3rem;
+  font-weight: bold;
+  color: #E50914; /* Netflix red */
+  margin: 0 1.5rem; /* Added margin to improve readability */
+}
+
+.hero .subheadline {
+  font-size: 1.125rem;
+  color: #808080; /* Netflix gray */
+  margin-top: 1rem;
+}

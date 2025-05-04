@@ -1,0 +1,23 @@
+/* Updated About section styling for a more Netflix-like appearance */
+.about {
+  margin: 3rem auto;
+  padding: 2rem;
+  max-width: 50rem;
+  text-align: center;
+  background-color: #f4f4f4; /* Light gray background for subtlety */
+  border-radius: 8px; /* Rounded corners for a modern look */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
+}
+
+.about h2 {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #141414; /* Black for emphasis */
+  margin-bottom: 1rem;
+}
+
+.about p {
+  font-size: 1.125rem;
+  color: #333;
+  line-height: 1.75;
+}
