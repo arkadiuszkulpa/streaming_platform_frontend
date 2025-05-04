@@ -5,7 +5,7 @@ const Navbar = () => {
   return (
     <nav className="navbar bg-netflix-black text-white py-4 px-6 flex justify-between items-center">
       <div className="logo">
-        <h1 className="text-2xl font-bold">NetflixClone</h1>
+        <h1 className="text-2xl font-bold">MyStream.AI</h1>
       </div>
       <div className="tagline">
         <p className="text-sm text-netflix-gray">Power to stream what YOU want.</p>

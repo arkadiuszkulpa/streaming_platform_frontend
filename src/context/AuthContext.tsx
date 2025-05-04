@@ -15,20 +15,13 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
   const [currentUser, setCurrentUser] = useState<UserProfile | null>(null);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
-  const login = async (email: string, password: string): Promise<boolean> => {
-    // Simulate API call delay
-    await new Promise(resolve => setTimeout(resolve, 800));
-    
-    // In a real app, this would validate against a backend
-    // For this demo, we'll accept any email ending with @example.com and any password
-    if (email.endsWith('@example.com') && password.length >= 6) {
+  const login = ({ email, password }: { email: string; password: string }) => {
+    if (typeof email === 'string' && email.endsWith('@example.com') && password.length >= 6) {
       const user = users.find(u => u.email === email) || users[0];
       setCurrentUser(user);
-      setIsAuthenticated(true);
-      return true;
+    } else {
+      throw new Error('Invalid email or password');
     }
-    
-    return false;
   };
 
   const logout = () => {
