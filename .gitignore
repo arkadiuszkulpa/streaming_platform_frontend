@@ -40,3 +40,5 @@ coverage/
 
 # Ignore any local testing files
 tests/output/
+
+ai_generated/
