@@ -16,6 +16,7 @@ const MovieCard: React.FC<MovieCardProps> = ({ movie }) => {
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       style={{ width: '240px', height: '360px' }}
+      aria-label={`Movie Card: ${movie.title}`}
     >
       {/* Static Card */}
       <div className={`absolute inset-0 transition-opacity duration-300 ${isHovered ? 'opacity-0' : 'opacity-100'}`}>
@@ -54,7 +55,7 @@ const MovieCard: React.FC<MovieCardProps> = ({ movie }) => {
             </Link>
           </div>
           
-          <h3 className="text-white font-medium text-sm mb-1 line-clamp-1">{movie.title}</h3>
+          <h3 className="text-white font-medium text-sm mb-1 line-clamp-1" aria-label="Movie Title">{movie.title}</h3>
           
           <div className="flex items-center text-xs space-x-2 mb-2">
             <span className="text-green-500 font-medium">{movie.rating * 10}% Match</span>
