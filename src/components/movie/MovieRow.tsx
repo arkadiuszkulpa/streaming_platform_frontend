@@ -55,7 +55,7 @@ const MovieRow: React.FC<MovieRowProps> = ({ category }) => {
         {/* Movie Slider */}
         <div 
           ref={sliderRef}
-          className="flex gap-2 overflow-x-auto scrollbar-hide pl-4 md:pl-12 pr-4"
+          className="flex gap-2 overflow-x-auto scrollbar-hide pl-4 md:pl-12 pr-4 touch-pan-x"
           onScroll={handleScroll}
           style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
         >

@@ -10,7 +10,7 @@ interface HeroBannerProps {
 
 const HeroBanner: React.FC<HeroBannerProps> = ({ movie }) => {
   return (
-    <div className="relative w-full" style={{ height: '80vh', minHeight: '500px' }}>
+    <div className="relative w-full" style={{ height: '80vh', minHeight: '300px', maxHeight: '100vh' }} aria-label="Hero Banner">
       {/* Background Image */}
       <div className="absolute inset-0">
         <img 
@@ -24,20 +24,20 @@ const HeroBanner: React.FC<HeroBannerProps> = ({ movie }) => {
 
       {/* Content */}
       <div className="relative h-full flex flex-col justify-end pb-10 md:pb-24 px-4 md:px-12 max-w-3xl">
-        <h1 className="text-4xl md:text-6xl font-bold text-white mb-4">{movie.title}</h1>
+        <h1 className="text-4xl md:text-6xl font-bold text-white mb-8" aria-label="Movie Title">{movie.title}</h1>
         
-        <div className="flex items-center text-sm space-x-4 mb-4">
+        <div className="flex items-center text-sm space-x-4 mb-6">
           <span className="text-green-500 font-bold">{movie.rating * 10}% Match</span>
           <span className="text-netflix-lightGray">{movie.releaseYear}</span>
           <span className="border border-netflix-gray px-1 text-netflix-lightGray">{movie.maturityRating}</span>
           <span className="text-netflix-lightGray">{movie.duration}</span>
         </div>
         
-        <p className="text-netflix-lightGray mb-6 line-clamp-3 md:line-clamp-none">
+        <p className="text-netflix-lightGray mb-8 line-clamp-3 md:line-clamp-none">
           {movie.description}
         </p>
         
-        <div className="flex flex-wrap gap-3">
+        <div className="flex flex-wrap gap-3 z-10">
           <Link to={`/watch/${movie.id}`}>
             <Button 
               className="flex items-center gap-2" 

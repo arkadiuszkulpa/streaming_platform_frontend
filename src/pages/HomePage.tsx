@@ -10,7 +10,7 @@ const HomePage: React.FC = () => {
     <div className="bg-netflix-black min-h-screen">
       <HeroBanner movie={featuredMovie} />
       
-      <div className="relative z-10 -mt-16 md:-mt-32">
+      <div className="relative z-10 mt-8 md:mt-16">
         {movieCategories.map((category) => (
           <MovieRow key={category.id} category={category} />
         ))}
