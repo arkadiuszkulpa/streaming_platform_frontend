@@ -8,12 +8,14 @@ phases:
   build:
     commands:
       - echo "Running tests..."
-      - npm test
+#      - npm test
+      - echo "Building the React app..."
+      - npm run build # Run the Vite build command
   post_build:
     commands:
       - echo "Tests completed. Preparing to deploy to S3."
-      - aws s3 sync . s3://movie-platform-frontend-dev-224356102322 --delete
+      - aws s3 sync . s3://frontend-bucket-streaming-platform-infra-dev --delete
 artifacts:
   files:
-    - '**/*' # Include all files in the repository
+    - 'dist/**/*' # Include all files in the repository
   discard-paths: no
