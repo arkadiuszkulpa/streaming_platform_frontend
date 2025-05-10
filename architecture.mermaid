@@ -1,0 +1,38 @@
+flowchart TD
+    LandingPage["Landing Page"]
+    SignUp["Sign Up"]
+    SignIn["Sign In"]
+    EmailConfirmation["Email Confirmation"]
+    ForgotPassword["Forgot Password"]
+    PrivacyPolicy["Privacy Policy"]
+    ProfilesScreen["Profiles Screen"]
+    NewProfile["New Profile Creation"]
+    MainPage["Main Page"]
+    SearchResults["Search Results"]
+    MovieDetails["Movie Details"]
+    CommunityPage["Community Page"]
+    WatchlistsScreen["Watchlists Screen"]
+    MySettings["My Settings"]
+    MyAlgorithm["My Algorithm"]
+
+    LandingPage -->|Option 1| SignUp
+    LandingPage -->|Option 2| SignIn
+    SignUp --> EmailConfirmation
+    EmailConfirmation --> SignIn
+    SignIn -->|Forgot Password| ForgotPassword
+    SignIn -->|Privacy Policy| PrivacyPolicy
+    SignIn --> ProfilesScreen
+    ProfilesScreen -->|Click '+'| NewProfile
+    ProfilesScreen -->|Select Profile| MainPage
+    NewProfile -->|Back| ProfilesScreen
+    NewProfile -->|Next| MainPage
+
+    MainPage -->|Search Bar Enter| SearchResults
+    MainPage -->|Click Tile| MovieDetails
+    SearchResults -->|Click Tile| MovieDetails
+    MainPage -->|Community Icon| CommunityPage
+    MainPage -->|Profile Icon| ProfilesScreen
+
+    MainPage -->|Footer: Watchlists| WatchlistsScreen
+    MainPage -->|Footer: My Settings| MySettings
+    MainPage -->|Footer: My Algorithm| MyAlgorithm

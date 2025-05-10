@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import React, { useState, useContext } from 'react';
+import { Link, useNavigate, Navigate } from 'react-router-dom';
 import { Film, CheckCircle2 } from 'lucide-react';
 import Input from '../components/common/Input';
 import Button from '../components/common/Button';
-import { useAuth } from '../context/AuthContext';
+import { useAuth, AuthContext } from '../context/AuthContext';
 
 const SignupPage: React.FC = () => {
   const [email, setEmail] = useState('');
@@ -14,12 +14,24 @@ const SignupPage: React.FC = () => {
   
   const navigate = useNavigate();
   const { login } = useAuth();
+  const { isAuthenticated } = useContext(AuthContext);
+
+  if (isAuthenticated) {
+    return <Navigate to="/home" replace />;
+  }
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError('');
     setIsLoading(true);
     
+    const TEST_MODE = import.meta.env.VITE_TEST_MODE === 'true';
+
+    if (TEST_MODE) {
+      navigate('/profiles'); // Directly navigate to ProfilesScreen in test mode
+      return;
+    }
+
     // Email validation
     if (!email.endsWith('@example.com')) {
       // For demo purposes, force email to end with @example.com
@@ -39,15 +51,9 @@ const SignupPage: React.FC = () => {
     }
     
     try {
-      // In a real app, you would register the user first
-      // For this demo, we'll just log them in
-      const success = await login(email, password);
-      
-      if (success) {
-        navigate('/');
-      } else {
-        setError('Failed to create account. Please try again.');
-      }
+      // Placeholder for actual signup logic
+      console.log('Signup logic goes here');
+      navigate('/profiles');
     } catch (err) {
       setError('An error occurred. Please try again later.');
     } finally {

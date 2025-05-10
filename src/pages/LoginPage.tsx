@@ -1,11 +1,17 @@
-import React, { useState } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
+import React, { useState, useContext } from 'react';
+import { useNavigate, Link, Navigate } from 'react-router-dom';
 import { Film } from 'lucide-react';
 import Input from '../components/common/Input';
 import Button from '../components/common/Button';
-import { useAuth } from '../context/AuthContext';
+import { useAuth, AuthContext } from '../context/AuthContext';
 
 const LoginPage: React.FC = () => {
+  const { isAuthenticated } = useContext(AuthContext);
+
+  if (isAuthenticated) {
+    return <Navigate to="/home" replace />;
+  }
+
   const [email, setEmail] = useState('john@example.com');
   const [password, setPassword] = useState('password123');
   const [isLoading, setIsLoading] = useState(false);
@@ -18,12 +24,19 @@ const LoginPage: React.FC = () => {
     e.preventDefault();
     setError('');
     setIsLoading(true);
+
+    const TEST_MODE = import.meta.env.VITE_TEST_MODE === 'true';
+
+    if (TEST_MODE) {
+      navigate('/profiles'); // Directly navigate to ProfilesScreen in test mode
+      return;
+    }
     
     try {
       const success = await login(email, password);
       
       if (success) {
-        navigate('/');
+        navigate('/profiles');
       } else {
         setError('Invalid email or password. Please try again.');
       }

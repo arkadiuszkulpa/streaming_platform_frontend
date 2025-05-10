@@ -5,9 +5,10 @@ import { MovieCategory } from '../../types/movie';
 
 interface MovieRowProps {
   category: MovieCategory;
+  onMovieClick: (movie: any) => void;
 }
 
-const MovieRow: React.FC<MovieRowProps> = ({ category }) => {
+const MovieRow: React.FC<MovieRowProps> = ({ category, onMovieClick }) => {
   const sliderRef = useRef<HTMLDivElement>(null);
   const [showLeftArrow, setShowLeftArrow] = useState(false);
   const [showRightArrow, setShowRightArrow] = useState(true);
@@ -38,7 +39,7 @@ const MovieRow: React.FC<MovieRowProps> = ({ category }) => {
   };
 
   return (
-    <div className="mb-8">
+    <div className="mb-8" data-testid={`movie-row-${category.id}`}>
       <h2 className="text-xl text-white font-medium mb-4 ml-4 md:ml-12">{category.title}</h2>
       
       <div className="relative group">
@@ -60,8 +61,11 @@ const MovieRow: React.FC<MovieRowProps> = ({ category }) => {
           style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
         >
           {category.movies.map((movie) => (
-            <div key={movie.id} className="flex-shrink-0 pb-8">
-              <MovieCard movie={movie} />
+            <div 
+              key={movie.id} 
+              className="flex-shrink-0 pb-8"
+            >
+              <MovieCard movie={movie} onMovieClick={onMovieClick} />
             </div>
           ))}
         </div>
