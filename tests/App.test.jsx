@@ -3,7 +3,7 @@ import { MemoryRouter } from 'react-router-dom';
 import App from "../src/App";
 
 describe('App Component', () => {
-  test('renders Navbar, Hero, and About components on the home route', () => {
+  test('renders Hero and About components on the home route', () => {
     render(
       <MemoryRouter initialEntries={["/"]}>
         <App />

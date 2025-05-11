@@ -1,0 +1,171 @@
+/* Modal Container */
+.previewModal--container {
+    position: fixed;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 850px;
+    background: #000;
+    color: #fff;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.75);
+    z-index: 1000;
+    padding: 20px;
+    border-radius: 8px;
+    max-height: 90vh;
+    overflow-y: auto;
+    margin-right: -15px; /* Push scrollbar to the edge */
+}
+
+/* Add padding to the body to prevent content from being hidden */
+body {
+    padding-right: 15px;
+    overflow: hidden;
+}
+
+/* Player Container */
+.previewModal--player_container {
+    position: relative;
+    width: 100%;
+    height: 400px;
+    background: #222;
+    margin-bottom: 30px;
+}
+
+.video-container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.video-player {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.boxart-wrapper {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    margin: 10px;
+}
+
+.boxart {
+    width: 100px;
+    opacity: 0.8;
+}
+
+.storyArt {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 10px;
+}
+
+.story-art {
+    width: 200px;
+    opacity: 1;
+}
+
+.titleTreatmentWrapper {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    margin: 20px;
+}
+
+.title-logo {
+    width: 300px;
+    margin-bottom: 10px;
+}
+
+.progress-bar {
+    display: flex;
+    align-items: center;
+}
+
+.progress-completed {
+    display: inline-block;
+    height: 5px;
+    background: #e50914;
+}
+
+.progress-summary {
+    margin-left: 10px;
+}
+
+/* Button Controls */
+.button-controls {
+    display: flex;
+    gap: 10px;
+}
+
+.play-button,
+.add-to-list-button,
+.thumbs-up-button {
+    background: #e50914;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.play-button:hover,
+.add-to-list-button:hover,
+.thumbs-up-button:hover {
+    background: #f40612;
+}
+
+/* Modal Info */
+.modal-info {
+    margin-top: 30px;
+}
+
+.details-metadata {
+    display: flex;
+    justify-content: space-between;
+    margin: 20px 0;
+}
+
+.metadata-left {
+    flex: 1;
+    margin-right: 10px;
+}
+
+.video-metadata {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+/* Adjusted font size for consistency */
+.synopsis {
+    font-size: 16px; /* Updated to match other text sizes */
+    line-height: 1.5;
+}
+
+.metadata-right {
+    flex: 1;
+    margin-left: 10px;
+}
+
+.tags {
+    font-size: 14px;
+}
+
+.age-rating {
+    font-size: 16px; /* Ensures consistency with synopsis */
+}
+
+/* Close Button */
+.close-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: transparent;
+    border: none;
+    color: #fff;
+    font-size: 20px;
+    cursor: pointer;
+}

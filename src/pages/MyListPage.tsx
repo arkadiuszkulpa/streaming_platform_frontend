@@ -3,6 +3,8 @@ import { useAuth } from '../context/AuthContext';
 import { getMovieById } from '../data/movies';
 import { Movie } from '../types/movie';
 import MovieCard from '../components/movie/MovieCard';
+import Header from '../components/layout/Header';
+import Footer from '../components/layout/Footer_HUD';
 
 const MyListPage: React.FC = () => {
   const { currentUser, isAuthenticated } = useAuth();
@@ -47,7 +49,12 @@ const MyListPage: React.FC = () => {
   }
 
   return (
-    <div className="bg-netflix-black min-h-screen pt-24 pb-12 px-4 md:px-12">
+    <div className="bg-netflix-black min-h-screen text-white">
+      <Header />
+      <div className="p-8">
+        <h1 className="text-3xl font-bold mb-4">My Watchlist</h1>
+        <p className="text-netflix-gray">Your saved movies and shows will appear here.</p>
+      </div>
       <div className="max-w-7xl mx-auto">
         <h1 className="text-3xl text-white font-medium mb-8">My List</h1>
         
@@ -66,6 +73,7 @@ const MyListPage: React.FC = () => {
           </div>
         )}
       </div>
+      <Footer />
     </div>
   );
 };

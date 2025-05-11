@@ -15,13 +15,11 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
   const [currentUser, setCurrentUser] = useState<UserProfile | null>(null);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
-  const login = ({ email, password }: { email: string; password: string }) => {
-    if (typeof email === 'string' && email.endsWith('@example.com') && password.length >= 6) {
-      const user = users.find(u => u.email === email) || users[0];
-      setCurrentUser(user);
-    } else {
-      throw new Error('Invalid email or password');
-    }
+  const login = async (email: string, password: string): Promise<boolean> => {
+    // Test logic: Allow any email and password to authenticate
+    setCurrentUser({ email, name: 'Test User' }); // Mock user data
+    setIsAuthenticated(true);
+    return true;
   };
 
   const logout = () => {
@@ -43,3 +41,5 @@ export const useAuth = (): AuthContextType => {
   }
   return context;
 };
+
+export { AuthContext };

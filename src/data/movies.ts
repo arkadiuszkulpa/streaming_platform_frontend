@@ -166,3 +166,7 @@ export const getFeaturedMovie = (): Movie => {
 export const getMovieById = (id: number): Movie | undefined => {
   return movies.find(movie => movie.id === id);
 };
+
+export const getWatchlistedMovies = (): Movie[] => {
+  return movies.filter(movie => movie.isTrending); // Placeholder logic for watchlisted movies
+};

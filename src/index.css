@@ -12,10 +12,12 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   @apply bg-netflix-black text-white min-h-screen flex flex-col;
+  overflow-y: auto; /* Allow vertical scrolling */
 }
 
 #root {
   @apply flex-grow flex flex-col;
+  overflow-y: auto; /* Ensure scrolling works for the root container */
 }
 
 /* Hide scrollbar for Chrome, Safari and Opera */
