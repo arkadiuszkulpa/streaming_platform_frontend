@@ -15,7 +15,7 @@ phases:
   post_build:
     commands:
       - echo "Tests completed. Preparing to deploy to S3."
-      - aws s3 sync dist/ s3://frontend-bucket-streaming-platform-infra-dev --delete  --guess-mime-type
+      - aws s3 sync dist/ s3://frontend-bucket-streaming-platform-infra-dev --delete
 artifacts:
   files:
     - 'dist/**/*' # Include all files in the repository
