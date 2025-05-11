@@ -16,14 +16,10 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   const login = async (email: string, password: string): Promise<boolean> => {
-    if (typeof email === 'string' && email.endsWith('@example.com') && password.length >= 6) {
-      const user = users.find(u => u.email === email) || users[0];
-      setCurrentUser(user);
-      setIsAuthenticated(true);
-      return true;
-    } else {
-      throw new Error('Invalid email or password');
-    }
+    // Test logic: Allow any email and password to authenticate
+    setCurrentUser({ email, name: 'Test User' }); // Mock user data
+    setIsAuthenticated(true);
+    return true;
   };
 
   const logout = () => {

@@ -2,46 +2,46 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { AuthProvider, useAuth } from './context/AuthContext';
 import Header from './components/layout/Header';
-import Footer from './components/layout/Footer';
+import Footer from './components/layout/Footer_HUD';
 import MainPage from './pages/HomePage'; // Updated import to reflect renaming
-import LoginPage from './pages/LoginPage';
-import SignupPage from './pages/SignupPage';
 import WatchPage from './pages/WatchPage';
 import MyListPage from './pages/MyListPage';
-import Navbar from './components/Navbar';
-import Hero from './components/Hero';
-import About from './components/About';
+import Hero from './components/landing_page/Hero';
+import About from './components/landing_page/About';
 import LandingPage from './pages/LandingPage';
 import ProfilesScreen from './pages/ProfilesScreen';
-import ProfileCreationPage from './pages/ProfileCreationPage';
+import CommunityPage from './pages/CommunityPage';
 
+// ProtectedRoute component ensures that only authenticated users can access certain routes
 const ProtectedRoute: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const { isAuthenticated } = useAuth();
-  return isAuthenticated ? <>{children}</> : <Navigate to="/" replace />;
+  const { isAuthenticated } = useAuth(); // Check authentication status from AuthContext
+  return isAuthenticated ? <>{children}</> : <Navigate to="/" replace />; // Redirect to landing page if not authenticated
 };
 
 function App() {
   return (
+    // Router wraps the entire application to enable routing
     <Router future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
+      {/* AuthProvider provides authentication context to the app */}
       <AuthProvider>
         <div className="flex flex-col min-h-screen bg-netflix-black text-white">
+          {/* Define application routes */}
           <Routes>
             {/* Public routes */}
             <Route path="/" element={<LandingPage />} />
-            <Route path="/login" element={<LoginPage />} />
-            <Route path="/signup" element={<SignupPage />} />
 
             {/* Protected routes */}
             <Route
               path="/home"
               element={
                 <ProtectedRoute>
+                  {/* Main layout for authenticated users */}
                   <div className="flex flex-col min-h-screen">
-                    <Header />
+                    <Header /> {/* Header component */}
                     <main className="flex-grow">
-                      <MainPage />
+                      <MainPage /> {/* Main content */}
                     </main>
-                    <Footer />
+                    <Footer /> {/* Footer component */}
                   </div>
                 </ProtectedRoute>
               }
@@ -50,7 +50,7 @@ function App() {
               path="/my-list"
               element={
                 <ProtectedRoute>
-                  <MyListPage />
+                  <MyListPage /> {/* My List page for authenticated users */}
                 </ProtectedRoute>
               }
             />
@@ -58,7 +58,7 @@ function App() {
               path="/watch/:id"
               element={
                 <ProtectedRoute>
-                  <WatchPage />
+                  <WatchPage /> {/* Watch page for viewing specific content */}
                 </ProtectedRoute>
               }
             />
@@ -66,20 +66,19 @@ function App() {
               path="/profiles"
               element={
                 <ProtectedRoute>
-                  <ProfilesScreen />
+                  <ProfilesScreen /> {/* Profiles management screen */}
                 </ProtectedRoute>
               }
             />
             <Route
-              path="/profile-creation"
+              path="/community"
               element={
                 <ProtectedRoute>
-                  <ProfileCreationPage />
+                  <CommunityPage /> {/* Community page for authenticated users */}
                 </ProtectedRoute>
               }
             />
           </Routes>
-          <Footer />
         </div>
       </AuthProvider>
     </Router>

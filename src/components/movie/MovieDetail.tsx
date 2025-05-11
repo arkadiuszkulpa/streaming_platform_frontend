@@ -1,55 +1,73 @@
 import React, { useEffect } from 'react';
-import { FaPlay, FaPlus, FaThumbsUp } from 'react-icons/fa';
+import './MovieDetail.css';
+import MovieRow from './MovieRow';
+import { movieCategories } from '../../data/movies';
 
 const MovieDetail: React.FC<{ movie: any; onClose: () => void }> = ({ movie, onClose }) => {
   useEffect(() => {
-    // Disable scrolling when the modal is open
     document.body.style.overflow = 'hidden';
     return () => {
-      // Re-enable scrolling when the modal is closed
       document.body.style.overflow = '';
     };
   }, []);
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50" data-testid="movie-detail-modal">
-      <div className="bg-white text-black p-6 rounded relative max-w-3xl w-full" data-testid="movie-detail-content">
-        {/* Close Button */}
-        <button
-          onClick={onClose}
-          className="absolute top-2 right-2 text-black bg-gray-200 rounded-full p-2 hover:bg-gray-300"
-        >
-          X
-        </button>
-
-        {/* Movie Image */}
-        <div className="mb-4">
-          <img
-            src={movie.posterUrl}
-            alt={movie.title}
-            className="w-full h-auto rounded"
-          />
+    <div className="previewModal--container">
+      <div className="previewModal--player_container">
+        <div className="boxart-wrapper">
+          <img src={movie?.boxArt || 'placeholder.jpg'} alt={movie?.title || 'Movie'} className="boxart" />
         </div>
-
-        {/* Movie Title */}
-        <h2 className="text-2xl font-bold mb-2">{movie.title}</h2>
-
-        {/* Movie Description */}
-        <p className="text-gray-700 mb-4">{movie.description}</p>
-
-        {/* Action Buttons */}
-        <div className="flex gap-4">
-          <button className="flex items-center gap-2 bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700">
-            <FaPlay /> Play
-          </button>
-          <button className="flex items-center gap-2 bg-gray-200 text-black px-4 py-2 rounded hover:bg-gray-300">
-            <FaPlus /> Add to Watchlist
-          </button>
-          <button className="flex items-center gap-2 bg-gray-200 text-black px-4 py-2 rounded hover:bg-gray-300">
-            <FaThumbsUp /> Like
-          </button>
+        <div className="storyArt">
+          <img src={movie?.storyArt || 'placeholder-story.jpg'} alt={movie?.title || 'Story Art'} className="story-art" />
+        </div>
+        <div className="titleTreatmentWrapper">
+          <img src={movie?.titleLogo || 'placeholder-logo.jpg'} alt={movie?.title || 'Title Logo'} className="title-logo" />
+          <div className="button-controls">
+            <button className="play-button">Play</button>
+            <button className="add-to-list-icon">+</button>
+            <button className="thumbs-up-icon">👍</button>
+          </div>
         </div>
       </div>
+      <div className="modal-info">
+        <div className="details-metadata">
+          <div className="metadata-left">
+            <div className="video-metadata">
+              <span className="year">{movie?.year || '2025'}</span>
+              <span className="duration">{movie?.duration || '2h'}</span>
+              <span className="badge">HD</span>
+            </div>
+            <div className="age-rating">
+              <span>Age Rating: {movie?.ageRating || 'PG-13'}</span>
+            </div>
+            <p className="synopsis">{movie?.synopsis || 'Placeholder synopsis for the movie.'}</p>
+          </div>
+        </div>
+      </div>
+
+      {/* Movie Collection Section */}
+      <div className="movie-collection">
+        <h3>{movie?.title || 'Movie'} Collection</h3>
+        <MovieRow category={movieCategories[0]} onMovieClick={() => {}} />
+      </div>
+
+      {/* More Like This Section */}
+      <div className="more-like-this">
+        <h3>More Like This</h3>
+        <MovieRow category={movieCategories[1]} onMovieClick={() => {}} />
+      </div>
+
+      {/* About Section */}
+      <div className="about-movie">
+        <h3>About {movie?.title || 'Movie'}</h3>
+        <p><strong>Director:</strong> {movie?.director || 'Placeholder Director'}</p>
+        <p><strong>Cast:</strong> {movie?.cast || 'Placeholder Cast'}</p>
+        <p><strong>Writer:</strong> {movie?.writer || 'Placeholder Writer'}</p>
+        <p><strong>Genres:</strong> {movie?.genres || 'Placeholder Genres'}</p>
+        <p><strong>Age Rating:</strong> {movie?.ageRating || 'PG-13'}</p>
+      </div>
+
+      <button className="close-button" onClick={onClose}>Close</button>
     </div>
   );
 };

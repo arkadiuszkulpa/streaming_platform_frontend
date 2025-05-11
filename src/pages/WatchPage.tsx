@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { getWatchlistedMovies } from '../data/movies';
 import { Movie } from '../types/movie';
+import Header from '../components/layout/Header';
 
 const MyWatchlistsPage: React.FC = () => {
   const [watchlistedMovies, setWatchlistedMovies] = useState<Movie[]>([]);
@@ -44,6 +45,7 @@ const MyWatchlistsPage: React.FC = () => {
 
   return (
     <div className="bg-black min-h-screen pt-24 px-4">
+      <Header />
       <div className="max-w-4xl mx-auto">
         <h1 className="text-3xl text-white mb-8">My Watchlist</h1>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
